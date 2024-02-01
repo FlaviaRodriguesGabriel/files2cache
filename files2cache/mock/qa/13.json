@@ -1,0 +1,15 @@
+{
+    "data": {
+        "codigo_dominio": 13,
+        "valores_dominio": [
+            {
+                "codigo_valor_dominio": 176,
+                "codigo_referencia_valor_dominio": "000000176"
+            },
+            {
+                "codigo_valor_dominio": 177,
+                "codigo_referencia_valor_dominio": "000000177"
+            }
+        ]
+    }
+}

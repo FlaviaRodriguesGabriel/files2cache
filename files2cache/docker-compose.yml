@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=s3
+      - DEBUG=1
+      - DEFAULT_REGION=sa-east-1
+    volumes:
+      - ./entrypoint.sh:/docker-entrypoint-initaws.d/entrypoint.sh
+    networks:
+      - localstack_network
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+    networks:
+      - localstack_network
+      
+  sam:
+    image: public.ecr.aws/sam/build-python3.9:1.108.0-20240123220214
+    command: ["local", "start-api"]
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/var/opt
+    environment:
+      - AWS_DEFAULT_REGION=sa-east-1  # Set your preferred AWS region
+
+networks:
+  localstack_network:
+    driver: bridge

@@ -1,0 +1,7 @@
+requests
+six
+regex
+boto3
+flask
+redis-py-cluster
+loguru
